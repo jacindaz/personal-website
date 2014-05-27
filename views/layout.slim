@@ -1,0 +1,18 @@
+
+
+doctype html
+
+html lang="en"
+  head
+    title== @title || "Jacinda Zhong"
+    meta charset="utf-8"
+    link rel="stylesheet" href="styles.css"
+    link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'
+
+body
+
+  header
+    == slim :nav
+
+  section
+    == yield
