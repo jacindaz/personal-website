@@ -2,7 +2,7 @@ require 'sinatra'
 require 'rubygems'
 require 'csv'
 require 'pry'
-require 'slim'
+
 
 
 #METHODS------------------------------------------------------------------------------------------
@@ -11,34 +11,40 @@ require 'slim'
 
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
+get('/bootstrap.css'){ css :bootstrap }
 
 get '/' do
   @title = "Jacinda Zhong"
-  slim :home
+  erb :home
 end
 
 get '/about' do
   @title = "About Jacinda"
-  slim :about
+  erb :about
 end
 
 get '/contact' do
   @title = "Contact Me"
-  slim :contact
+  erb :contact
 end
 
 get '/funsies' do
   @title = "Just for Funsies"
-  slim :funsies
+  erb :funsies
 end
 
 get '/coding' do
   @title = "Why Code"
-  slim :coding
+  erb :coding
+end
+
+get '/blog' do
+  @title = "My Blog"
+  erb :blog
 end
 
 #IF GET A 404 NOT FOUND ERROR--------------------------------------------
 not_found do
   @title = "Oops! Jacinda created a bug."
-  slim :home
+  erb :home
 end

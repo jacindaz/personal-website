@@ -4373,13 +4373,7 @@ input[type="submit"].btn.btn-mini {
   min-height: 40px;
   padding-right: 20px;
   padding-left: 20px;
-  background-color: #fafafa;
-  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
-  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
-  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
-  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-  background-repeat: repeat-x;
+  background-color: #E9DCF5;
   border: 1px solid #d4d4d4;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -4430,16 +4424,16 @@ input[type="submit"].btn.btn-mini {
 .navbar-text {
   margin-bottom: 0;
   line-height: 40px;
-  color: #777777;
+  color: #3F1766;
 }
 
 .navbar-link {
-  color: #777777;
+  color: #3F1766;
 }
 
 .navbar-link:hover,
 .navbar-link:focus {
-  color: #333333;
+  color: #3F1766;
 }
 
 .navbar .divider-vertical {
@@ -4632,12 +4626,11 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
-  color: #555555;
+  color: #3F1766;
   text-decoration: none;
-  background-color: #e5e5e5;
-  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-     -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-          box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  background-color: #99F0CD;
+  font-weight: 800;
+  font-size: 1.1em;
 }
 
 .navbar .btn-navbar {
