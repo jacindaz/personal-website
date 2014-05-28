@@ -1,0 +1,17 @@
+.float-left { float:left; }
+.float-right { float:right; }
+
+.padding { padding: 5px;}
+
+
+.image-left {
+  float:left;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.image-right {
+  float:right;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
