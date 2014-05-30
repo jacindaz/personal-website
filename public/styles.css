@@ -15,3 +15,20 @@
   margin-bottom: 20px;
   margin-left: 20px;
 }
+
+.dashboard {
+  width: 75px;
+  text-align: center;
+}
+
+.header_width { width: 150px; }
+
+.dashboard_underline { text-decoration: underline; }
+
+.table_styles {
+  padding: 15px;
+}
+
+td {
+  padding: 5px 15px;
+}

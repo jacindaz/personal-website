@@ -15,6 +15,12 @@ def get_weather(city,state)
   return weather_data
 end
 
+def convert_F(kelvin_temp)
+  celcius = kelvin_temp - 273.15
+  farenheit = (celcius * 1.8) + 32
+  return farenheit
+end
+
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
 get('/bootstrap.css'){ css :bootstrap }
@@ -51,7 +57,12 @@ end
 
 get '/dashboard' do
   @title = "Jacinda's Dashboard"
-  @weather_info = get_weather("Cambridge", "MA")
+  @city = "Cambridge"
+  @weather_info = get_weather(@city, "MA")
+  @temperature = convert_F(@weather_info["main"]["temp"]).to_i
+  @temp_min = convert_F(@weather_info["main"]["temp_min"]).to_i
+  @temp_max = convert_F(@weather_info["main"]["temp_max"]).to_i
+  @description = @weather_info["weather"][0]["description"]
 
   erb :dashboard
 end
