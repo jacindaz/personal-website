@@ -15,7 +15,7 @@ get('/bootstrap.css'){ css :bootstrap }
 
 get '/' do
   @title = "Jacinda Zhong"
-  erb :home
+  erb :index
 end
 
 get '/about' do
@@ -46,5 +46,5 @@ end
 #IF GET A 404 NOT FOUND ERROR--------------------------------------------
 not_found do
   @title = "Oops! Jacinda created a bug."
-  erb :home
+  erb :index
 end
