@@ -22,9 +22,13 @@
 }
 
 .weather_forecast {
-  width: 60px;
+  width: 75px;
   text-align:center;
   padding:10px 10px;
+}
+
+.temperature {
+  font-size: 16px;
 }
 
 .header_width { width: 150px; }
@@ -37,4 +41,12 @@
 
 td {
   padding: 5px 15px;
+}
+
+.image_saturation {
+  filter: saturate(70%);
+  -webkit-filter: saturate(70%);
+  -moz-filter: saturate(70%);
+  -o-filter: saturate(70%);
+  -ms-filter: saturate(70%);
 }

@@ -2,27 +2,6 @@
 
 
 
-<h3>Weather Forecast</h3>
-<table class="table-bordered table-responsive" background="weather-images/weather_map.png">
-
-  <% 7.times do %>
-      <th class="weather_forecast">
-        <span style="font-size: 18px;"><%= @date.strftime('%a') %></span>
-        <br>(<%= @date.strftime('%B %d') %>)
-
-      </th>
-      <% @date += 1 %>
-  <% end %>
-
-  <tr>
-    <% @temp_array.each do |day_hash| %>
-      <td class="weather_forecast"><%= day_hash[:day] %>  &#176; F</td>
-    <% end %>
-  </tr>
-</table>
-
-
-
 
 </body>
 </html>
