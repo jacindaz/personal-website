@@ -80,8 +80,13 @@ end
 
 get '/dashboard' do
   @title = "Jacinda's Dashboard"
-  @city = "Cambridge"
   @current_weather_object = Weather.new
+
+  if params[:query] == nil
+    @city = "Cambridge"
+  else
+    @city = params[:query]
+  end
 
   #Current Weather Variables-----------------------------------------------------------------------
   @weather_info = @current_weather_object.get_current_weather(@city, "MA")
