@@ -22,6 +22,9 @@
     "cod"=>200}
 
 
+
+
+
 {"cod":"200","message":0.4772,
   "city":{
     "id":1851632,"name":"Shuzenji",
