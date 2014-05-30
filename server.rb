@@ -6,40 +6,10 @@ require 'json'
 require 'net/http'
 require 'nokogiri'
 require 'open-uri'
+require_relative 'weather.rb'
 
 
 #METHODS------------------------------------------------------------------------------------------
-def get_current_weather(city,state)
-  uri = URI("http://api.openweathermap.org/data/2.5/weather?q=#{city},#{state}")
-  response = Net::HTTP.get(uri)
-  weather_data = JSON.parse(response)
-  return weather_data
-end
-
-def convert_F(kelvin_temp)
-  celcius = kelvin_temp - 273.15
-  farenheit = (celcius * 1.8) + 32
-  return farenheit
-end
-
-def weather_icon(icon_id)
-  url = "http://openweathermap.org/img/w/#{icon_id}.png"
-  return url
-end
-
-def celcius_to_faren(hash)
-  hash.each do |key,value|
-    new_value = (value.to_f * 1.8) + 32
-    rounded = new_value.round(1)
-    hash[key] = rounded
-  end
-  return hash
-end
-
-def celcius_to_faren_num(n)
-  farenheit = (n * 1.8) + 32
-  return farenheit.to_i
-end
 
 def usa_today_api(key_variable_name)
   key = ENV[key_variable_name]
@@ -114,14 +84,15 @@ end
 get '/dashboard' do
   @title = "Jacinda's Dashboard"
   @city = "Cambridge"
+  @current_weather_object = Weather.new
 
-  @weather_info = get_current_weather(@city, "MA")
-  @temperature = convert_F(@weather_info["main"]["temp"]).to_i
-  @temp_min = convert_F(@weather_info["main"]["temp_min"]).to_i
-  @temp_max = convert_F(@weather_info["main"]["temp_max"]).to_i
+  @weather_info = @current_weather_object.get_current_weather(@city, "MA")
+  @temperature = @current_weather_object.convert_F(@weather_info["main"]["temp"]).to_i
+  @temp_min = @current_weather_object.convert_F(@weather_info["main"]["temp_min"]).to_i
+  @temp_max = @current_weather_object.convert_F(@weather_info["main"]["temp_max"]).to_i
   @description = @weather_info["weather"][0]["description"]
   @weather_icon_id = @weather_info["weather"][0]["icon"]
-  @weather_icon_url = weather_icon(@weather_icon_id)
+  @weather_icon_url = @current_weather_object.weather_icon(@weather_icon_id)
 
   erb :dashboard
 end
