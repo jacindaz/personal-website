@@ -1,20 +1,19 @@
 <p>Testing</p>
 
-<%= @temp_hash %>
 
 
 <h3>Weather Forecast</h3>
 <table class="table-bordered table-responsive" background="weather-images/weather_map.png">
-  <th class="weather_forecast"><h4>Day 1</h4></th>
-  <th class="weather_forecast"><h4>2</h4></th>
-  <th class="weather_forecast"><h4>3</h4></th>
+  <th class="weather_forecast"><h3>Day 1</h4></th>
+  <th class="weather_forecast"><h3>2</h4></th>
+  <th class="weather_forecast"><h3>3</h4></th>
   <th class="weather_forecast"><h4>4</h4></th>
   <th class="weather_forecast"><h4>5</h4></th>
   <th class="weather_forecast"><h4>6</h4></th>
   <th class="weather_forecast"><h4>7</h4></th>
   <tr>
     <% @temp_array.each do |day_hash| %>
-      <td class="weather_forecast"><%= day_hash[:day] %></td>
+      <td class="weather_forecast"><%= day_hash[:day] %>  &#176; F</td>
     <% end %>
   </tr>
 </table>

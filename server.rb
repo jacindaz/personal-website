@@ -27,6 +27,20 @@ def weather_icon(icon_id)
   return url
 end
 
+def celcius_to_faren(hash)
+  hash.each do |key,value|
+    new_value = (value.to_f * 1.8) + 32
+    rounded = new_value.round(1)
+    hash[key] = rounded
+  end
+  return hash
+end
+
+def celcius_to_faren_num(n)
+  farenheit = (n * 1.8) + 32
+  return farenheit.to_i
+end
+
 def usa_today_api(key_variable_name)
   key = ENV[key_variable_name]
   uri = URI("http://api.usatoday.com/open/articles/topnews?api_key=#{key}")
@@ -116,14 +130,7 @@ get '/test' do
 
   @data = @xml_doc.xpath('/weatherdata/forecast/time[@day="2014-05-30"]')
   @temp_hash = xml_loop('/weatherdata/forecast/time[@day="2014-05-30"]/temperature', @xml_doc)
-
-  @temp_hash.each do |key,value|
-    new_value = (value.to_f * 1.8) + 32
-    rounded = new_value.round(1)
-    @temp_hash[key] = rounded
-  end
-
-  #@temp_hash2 = xml_loop('/weatherdata/forecast', @xml_doc)
+  @temp_faren = celcius_to_faren(@temp_hash)
 
   @temp_array = []
   @xml_doc.xpath('/weatherdata/forecast/time/temperature').each do |element|
@@ -131,8 +138,9 @@ get '/test' do
     @temp_hash2 = {}
     element.each do |key,value|
       puts "each loop: key/value is #{key}, #{value}"
-      @temp_hash2[key.to_sym] = value.to_i
+      @temp_hash2[key.to_sym] = celcius_to_faren_num(value.to_f)
     end
+
     @temp_array << @temp_hash2
   end
 
