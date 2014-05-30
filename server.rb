@@ -85,12 +85,16 @@ get '/dashboard' do
 
   #Current Weather Variables-----------------------------------------------------------------------
   @weather_info = @current_weather_object.get_current_weather(@city, "MA")
-  @temperature = @current_weather_object.convert_F(@weather_info["main"]["temp"]).to_i
-  @temp_min = @current_weather_object.convert_F(@weather_info["main"]["temp_min"]).to_i
-  @temp_max = @current_weather_object.convert_F(@weather_info["main"]["temp_max"]).to_i
-  @description = @weather_info["weather"][0]["description"]
-  @weather_icon_id = @weather_info["weather"][0]["icon"]
-  @weather_icon_url = @current_weather_object.weather_icon(@weather_icon_id)
+  temperature = @current_weather_object.convert_F(@weather_info["main"]["temp"]).to_i
+  temp_min = @current_weather_object.convert_F(@weather_info["main"]["temp_min"]).to_i
+  temp_max = @current_weather_object.convert_F(@weather_info["main"]["temp_max"]).to_i
+  description = @weather_info["weather"][0]["description"]
+  weather_icon_id = @weather_info["weather"][0]["icon"]
+  weather_icon_url = @current_weather_object.weather_icon(weather_icon_id)
+
+  @current_weather_hash = { :current_weather => temperature, :high => temp_max, :low => temp_min,
+                            :description => description, :icon_id => weather_icon_id, :icon_url => weather_icon_url }
+
 
   #Weather Forecast Variables-----------------------------------------------------------------------
   @date = today_date
@@ -99,14 +103,31 @@ get '/dashboard' do
 
   @temp_array = []
   @xml_doc.xpath('/weatherdata/forecast/time/temperature').each do |element|
+    @temp_hash2 = {}
+    element.each do |key,value|
+      @temp_hash2[key.to_sym] = @weather_forecast_object.celcius_to_faren_num(value.to_f)
+    end
+    @temp_array << @temp_hash2
+  end
+
+
+  #Pulling in Image icon id's for weather pictures-----------------------------------------------------
+  @icon_array = []
+  @xml_doc.xpath('/weatherdata/forecast/time/symbol').each do |element|
     puts "outer loop: element is #{element}"
     @temp_hash2 = {}
     element.each do |key,value|
       puts "each loop: key/value is #{key}, #{value}"
-      @temp_hash2[key.to_sym] = @weather_forecast_object.celcius_to_faren_num(value.to_f)
-
+      @temp_hash2[key.to_sym] = value
     end
-    @temp_array << @temp_hash2
+    @icon_array << @temp_hash2
+  end
+
+  @icon_url_array = []
+  @icon_array.each do |day|
+    icon_id = day[:var]
+    url = @weather_forecast_object.weather_icon(icon_id)
+    @icon_url_array << url
   end
 
 

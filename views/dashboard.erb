@@ -1,20 +1,23 @@
 
+
 <h3>Current Weather in <%= @city %></h3>
 <table class="table-bordered table-responsive image_saturation" background="weather-images/weather_map.png">
   <th class="header_width" rowspan="4">
-      <img src="<%= @weather_icon_url %>">
-      <h2><%= @temperature %> &#176; F</h2>
+      <img src="<%= @current_weather_hash[:icon_url] %>">
+      <h2><%= @current_weather_hash[:current_weather] %> &#176; F</h2>
   </th>
   <th class="dashboard"><h4>High</h4></th>
   <th class="dashboard"><h4>Low</h4></th>
   <tr>
-    <td class="dashboard temperature"><%= @temp_max %></td>
-    <td class="dashboard temperature"><%= @temp_min %></td>
+    <td class="dashboard temperature"><%= @current_weather_hash[:high] %></td>
+    <td class="dashboard temperature"><%= @current_weather_hash[:low] %></td>
   </tr>
   <tr>
-    <td class="dashboard" colspan=2><h4><%= @description %></h4></td>
+    <td class="dashboard" colspan=2><h4><%= @current_weather_hash[:description] %></h4></td>
   </tr>
 </table>
+
+<br><br><br><br>
 
 
 <h3><%= @city %> Weather Forecast</h3>
@@ -30,11 +33,23 @@
   <% end %>
 
   <tr>
+    <% @icon_url_array.each do |url| %>
+      <td><img src="<%= url %>"></td>
+    <% end %>
+  </tr>
+
+  <tr>
     <% @temp_array.each do |day_hash| %>
       <td class="weather_forecast temperature"><%= day_hash[:day] %>  &#176; F</td>
     <% end %>
   </tr>
 </table>
+
+
+
+
+
+
 
 
 </body>
