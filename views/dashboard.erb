@@ -1,6 +1,23 @@
-<p>Nothin' here yet.</p>
 
 <h3>Current Weather in <%= @city %></h3>
+<table class="table-bordered table-responsive" background="weather-images/weather_map.png">
+  <th class="header_width" rowspan="4">
+      <img src="<%= @weather_icon_url %>">
+      <h2><%= @temperature %> &#176; F</h2>
+  </th>
+  <th class="dashboard"><h4>High</h4></th>
+  <th class="dashboard"><h4>Low</h4></th>
+  <tr>
+    <td class="dashboard"><%= @temp_max %></td>
+    <td class="dashboard"><%= @temp_min %></td>
+  </tr>
+  <tr>
+    <td class="dashboard" colspan=2><h4><%= @description %></h4></td>
+  </tr>
+</table>
+
+
+<h3><%= @city %> Weather Forecast</h3>
 <table class="table-bordered table-responsive" background="weather-images/weather_map.png">
   <th class="header_width" rowspan="4"><h2>
         <%= @temperature %> &#176; F</h2></th>

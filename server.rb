@@ -3,12 +3,14 @@ require 'rubygems'
 require 'csv'
 require 'pry'
 require 'json'
+require 'rexml/document'
 require 'net/http'
-
+require 'nokogiri'
+require 'open-uri'
 
 
 #METHODS------------------------------------------------------------------------------------------
-def get_weather(city,state)
+def get_current_weather(city,state)
   uri = URI("http://api.openweathermap.org/data/2.5/weather?q=#{city},#{state}")
   response = Net::HTTP.get(uri)
   weather_data = JSON.parse(response)
@@ -21,6 +23,10 @@ def convert_F(kelvin_temp)
   return farenheit
 end
 
+def weather_icon(icon_id)
+  url = "http://openweathermap.org/img/w/#{icon_id}.png"
+  return url
+end
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
 get('/bootstrap.css'){ css :bootstrap }
@@ -58,13 +64,27 @@ end
 get '/dashboard' do
   @title = "Jacinda's Dashboard"
   @city = "Cambridge"
-  @weather_info = get_weather(@city, "MA")
+  @weather_info = get_current_weather(@city, "MA")
   @temperature = convert_F(@weather_info["main"]["temp"]).to_i
   @temp_min = convert_F(@weather_info["main"]["temp_min"]).to_i
   @temp_max = convert_F(@weather_info["main"]["temp_max"]).to_i
   @description = @weather_info["weather"][0]["description"]
+  @weather_icon_id = @weather_info["weather"][0]["icon"]
+  @weather_icon_url = weather_icon(@weather_icon_id)
+
+  @three_hour_weather = @weather_info
 
   erb :dashboard
+end
+
+get '/test' do
+#!/usr/bin/ruby -w
+
+  uri = URI("http://api.openweathermap.org/data/2.5/forecast/daily?q=Cambridge,MA&mode=xml&units=metric&cnt=7")
+
+  @xml_doc = Nokogiri::XML("http://api.openweathermap.org/data/2.5/forecast/daily?q=Cambridge,MA&mode=xml&units=metric&cnt=7")
+
+  erb :test
 end
 
 #IF GET A 404 NOT FOUND ERROR--------------------------------------------
