@@ -84,12 +84,16 @@ get '/dashboard' do
 
   if params[:query] == nil
     @city = "Cambridge"
+    @state = "MA"
   else
-    @city = params[:query]
+    split = params[:query].split(',' || " ")
+    cleaned_array = split.collect{ |query_item| query_item.strip }
+    @city = cleaned_array[0]
+    @state = cleaned_array[1]
   end
 
   #Current Weather Variables-----------------------------------------------------------------------
-  @weather_info = @current_weather_object.get_current_weather(@city, "MA")
+  @weather_info = @current_weather_object.get_current_weather(@city, @state)
   temperature = @current_weather_object.convert_F(@weather_info["main"]["temp"]).to_i
   temp_min = @current_weather_object.convert_F(@weather_info["main"]["temp_min"]).to_i
   temp_max = @current_weather_object.convert_F(@weather_info["main"]["temp_max"]).to_i
@@ -104,7 +108,7 @@ get '/dashboard' do
   #Weather Forecast Variables-----------------------------------------------------------------------
   @date = today_date
   @weather_forecast_object = Weather.new
-  @xml_doc = @weather_forecast_object.forecast_xml("Cambridge", "MA")
+  @xml_doc = @weather_forecast_object.forecast_xml(@city, @state)
 
   @temp_array = []
   @xml_doc.xpath('/weatherdata/forecast/time/temperature').each do |element|

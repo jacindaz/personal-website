@@ -1,10 +1,10 @@
 <form action="/dashboard" method="get">
-  <label for="query">Find weather for your city:</label>
+  <label for="query">Please enter your city and state:</label>
   <input type="text" name="query" id="query" />
   <input type="submit" value="Search" />
 </form>
 
-<h3>Current Weather in <%= @city %></h3>
+<h4>Right now in <%= @city %></h4>
 <table class="table-bordered table-responsive image_saturation" background="weather-images/weather_map.png">
   <th class="header_width" rowspan="4">
       <img src="<%= @current_weather_hash[:icon_url] %>">
@@ -24,7 +24,7 @@
 <br><br><br><br>
 
 
-<h3><%= @city %> Weather Forecast</h3>
+<h4><%= @city %> 7-Day Weather Forecast</h4>
 <table class="table-bordered table-responsive image_saturation" background="weather-images/weather_map.png">
 
   <% 7.times do %>
