@@ -97,10 +97,6 @@ get '/dashboard' do
   @weather_forecast_object = Weather.new
   @xml_doc = @weather_forecast_object.forecast_xml("Cambridge", "MA")
 
-  @data = @xml_doc.xpath('/weatherdata/forecast/time[@day="2014-05-30"]')
-  @temp_hash = xml_loop('/weatherdata/forecast/time[@day="2014-05-30"]/temperature', @xml_doc)
-  @temp_faren = @weather_forecast_object.celcius_to_faren(@temp_hash)
-
   @temp_array = []
   @xml_doc.xpath('/weatherdata/forecast/time/temperature').each do |element|
     puts "outer loop: element is #{element}"
