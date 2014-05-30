@@ -3,7 +3,6 @@ require 'rubygems'
 require 'csv'
 require 'pry'
 require 'json'
-require 'rexml/document'
 require 'net/http'
 require 'nokogiri'
 require 'open-uri'
@@ -39,13 +38,25 @@ end
 def xml_loop(xml_file_path, xml_doc)
   hash = {}
   xml_doc.xpath(xml_file_path).each do |attributes|
+    #puts "outer loop: attributes #{attributes}"
     attributes.each do |key, value|
+      #puts "each loop: key/value is #{key}, #{value}"
       hash[key.to_sym] = value
     end
   end
   hash
 end
 
+
+def xml_loop2(xml_file_path, xml_doc)
+  hash = {}
+  xml_doc.xpath(xml_file_path).each do |element|
+    element.xpath.each do |attribute|
+      puts attribute
+    end
+  end
+  hash
+end
 
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
@@ -106,6 +117,27 @@ get '/test' do
   @data = @xml_doc.xpath('/weatherdata/forecast/time[@day="2014-05-30"]')
   @temp_hash = xml_loop('/weatherdata/forecast/time[@day="2014-05-30"]/temperature', @xml_doc)
 
+  @temp_hash.each do |key,value|
+    new_value = (value.to_f * 1.8) + 32
+    rounded = new_value.round(1)
+    @temp_hash[key] = rounded
+  end
+
+  #@temp_hash2 = xml_loop('/weatherdata/forecast', @xml_doc)
+
+  @temp_array = []
+  @xml_doc.xpath('/weatherdata/forecast/time/temperature').each do |element|
+    puts "outer loop: element is #{element}"
+    @temp_hash2 = {}
+    element.each do |key,value|
+      puts "each loop: key/value is #{key}, #{value}"
+      @temp_hash2[key.to_sym] = value.to_i
+    end
+    @temp_array << @temp_hash2
+  end
+
+  #binding.pry
+
   erb :test
 end
 
@@ -114,3 +146,16 @@ not_found do
   @title = "Oops! Jacinda created a bug."
   erb :index
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

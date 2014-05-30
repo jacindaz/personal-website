@@ -21,6 +21,11 @@
   text-align: center;
 }
 
+.weather_forecast {
+  width: 50px;
+  text-align:center;
+}
+
 .header_width { width: 150px; }
 
 .dashboard_underline { text-decoration: underline; }
