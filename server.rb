@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'rubygems'
-require 'csv'
 require 'pry'
 require 'json'
 require 'net/http'
@@ -42,14 +41,12 @@ def xml_loop2(xml_file_path, xml_doc)
   hash
 end
 
-
 def today_date
   return Date.today
 end
 
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
-get('/bootstrap.css'){ css :bootstrap }
 
 get '/' do
   @title = "Jacinda Zhong"
@@ -98,11 +95,7 @@ get '/dashboard' do
   #Weather Forecast Variables-----------------------------------------------------------------------
   @date = today_date
   @weather_forecast_object = Weather.new
-#!/usr/bin/ruby -w
-  uri = URI("http://api.openweathermap.org/data/2.5/forecast/daily?q=Cambridge,MA&mode=xml&units=metric&cnt=7")
-  response = Net::HTTP.get(uri)
-  @xml_doc = Nokogiri::XML(response)
-  #binding.pry
+  @xml_doc = @weather_forecast_object.forecast_xml("Cambridge", "MA")
 
   @data = @xml_doc.xpath('/weatherdata/forecast/time[@day="2014-05-30"]')
   @temp_hash = xml_loop('/weatherdata/forecast/time[@day="2014-05-30"]/temperature', @xml_doc)
