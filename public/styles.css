@@ -22,8 +22,9 @@
 }
 
 .weather_forecast {
-  width: 50px;
+  width: 60px;
   text-align:center;
+  padding:10px 10px;
 }
 
 .header_width { width: 150px; }

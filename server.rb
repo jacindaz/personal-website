@@ -73,6 +73,11 @@ def xml_loop2(xml_file_path, xml_doc)
 end
 
 
+def today_date
+  return Date.today
+end
+
+
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
 get('/bootstrap.css'){ css :bootstrap }
 
@@ -122,6 +127,7 @@ get '/dashboard' do
 end
 
 get '/test' do
+  @date = today_date
 #!/usr/bin/ruby -w
   uri = URI("http://api.openweathermap.org/data/2.5/forecast/daily?q=Cambridge,MA&mode=xml&units=metric&cnt=7")
   response = Net::HTTP.get(uri)
@@ -139,8 +145,8 @@ get '/test' do
     element.each do |key,value|
       puts "each loop: key/value is #{key}, #{value}"
       @temp_hash2[key.to_sym] = celcius_to_faren_num(value.to_f)
-    end
 
+    end
     @temp_array << @temp_hash2
   end
 
