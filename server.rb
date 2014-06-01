@@ -5,18 +5,13 @@ require 'json'
 require 'net/http'
 require 'nokogiri'
 require 'open-uri'
+
 require_relative 'weather.rb'
+require_relative 'usa_today.rb'
 
 
 #METHODS------------------------------------------------------------------------------------------
 
-def usa_today_api(key_variable_name)
-  key = ENV[key_variable_name]
-  uri = URI("http://api.usatoday.com/open/articles/topnews?api_key=#{key}")
-  response = Net::HTTP.get(uri)
-  news_data = JSON.parse(response)
-  return news_data
-end
 
 def xml_loop(xml_file_path, xml_doc)
   hash = {}
@@ -123,10 +118,8 @@ get '/dashboard' do
   #Pulling in Image icon id's for weather pictures-----------------------------------------------------
   @icon_array = []
   @xml_doc.xpath('/weatherdata/forecast/time/symbol').each do |element|
-    puts "outer loop: element is #{element}"
     @temp_hash2 = {}
     element.each do |key,value|
-      puts "each loop: key/value is #{key}, #{value}"
       @temp_hash2[key.to_sym] = value
     end
     @icon_array << @temp_hash2
@@ -145,13 +138,19 @@ end
 
 get '/test' do
 
+  #USA Today API variables and calls---------------------------------------------------
+  @usa_today = UsaToday.new
+  @usa_today_api_data = @usa_today.usa_today_api("usa_today")
+
+  #NPR API variables and calls---------------------------------------------------------
+  @npr_api_data = GET "http://api.npr.org/query?id=1007,3&numResults=10"
 
   #binding.pry
 
   erb :test
 end
 
-#IF GET A 404 NOT FOUND ERROR--------------------------------------------
+#IF GET A 404 NOT FOUND ERROR----------------------------------------------------------
 not_found do
   @title = "Oops! Jacinda created a bug."
   erb :index
