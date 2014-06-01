@@ -143,13 +143,20 @@ get '/test' do
   @npr_data = @npr_object.npr_api_xml("npr_key")
 
   @npr_data_array = []
-  @npr_nested_array = []
   @npr_nested_hash = {}
   @npr_data.xpath('//nprml/list/story').each do |story_info|
     #binding.pry
     url = story_info.xpath('link[@type="html"]').text
     @npr_nested_hash[:url] = url
-    @npr_nested_array << @npr_nested_hash
+
+    title = story_info.xpath('title').text
+    @npr_nested_hash[:title] = title
+
+    teaser = story_info.xpath('teaser').text
+    @npr_nested_hash[:teaser] = teaser
+
+    @npr_data_array << @npr_nested_hash
+
   end
 
   #binding.pry
