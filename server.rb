@@ -7,7 +7,7 @@ require 'nokogiri'
 require 'open-uri'
 
 require_relative 'weather.rb'
-require_relative 'usa_today.rb'
+require_relative 'npr.rb'
 
 
 #METHODS------------------------------------------------------------------------------------------
@@ -138,12 +138,16 @@ end
 
 get '/test' do
 
-  #USA Today API variables and calls---------------------------------------------------
-  @usa_today = UsaToday.new
-  @usa_today_api_data = @usa_today.usa_today_api("usa_today")
+  #NPR Stories API variables and calls---------------------------------------------------
+  @npr_object = NPR.new
+  @npr_data = @npr_object.npr_api_xml("npr_key")
 
-  #NPR API variables and calls---------------------------------------------------------
-  @npr_api_data = GET "http://api.npr.org/query?id=1007,3&numResults=10"
+  @url_array = []
+  @npr_data.xpath('//nprml/list/story').each do |story_info|
+    #binding.pry
+    url = story_info.xpath('link[@type="html"]').text
+    @url_array << url
+  end
 
   #binding.pry
 
