@@ -1,8 +1,32 @@
 <p>Testing</p>
 
-<%= @npr_data_array %>
 
+<table class="table table-hover">
 
+  <% @npr_data_array[0].each do |key,value| %>
+    <% next if key == :url %>
+
+    <th><%= key.capitalize %></th>
+  <% end %>
+
+  <% @npr_data_array.each do |story| %>
+  <tr>
+    <% story.each do |key,value| %>
+      <% next if key == :url %>
+      <% if key == :title %>
+        <td>
+          <a href="<%= story[:url] %>" target="_blank">
+            <%= value %>
+          </a>
+        </td>
+      <% else %>
+        <td><%= value %></td>
+      <% end %>
+    <% end %>
+  </tr>
+  <% end %>
+
+</table>
 
 </body>
 </html>
