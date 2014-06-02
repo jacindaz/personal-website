@@ -139,6 +139,7 @@ end
 
 
 get '/test' do
+  @title = "Test Page"
 
   #NPR Stories API variables and calls---------------------------------------------------
   @npr_object = NPR.new("NPR")

@@ -13,7 +13,7 @@ class NPR
   end
 
   def logo_src
-    @logo_src = "/logos/NPR-logo.png"
+    @logo_src = "/images/logos/NPR-logo.png"
     return @logo_src
   end
 end

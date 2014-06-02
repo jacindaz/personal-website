@@ -5,7 +5,7 @@
 </form>
 
 <h4>Right now in <%= @city %></h4>
-<table class="table-bordered table-responsive image_saturation" background="weather-images/weather_map.png">
+<table class="table-bordered table-responsive image_saturation" background="/images/weather-images/weather_map.png">
   <th class="header_width" rowspan="4">
       <img src="<%= @current_weather_hash[:icon_url] %>">
       <h2><%= @current_weather_hash[:current_weather] %> &#176; F</h2>
@@ -25,7 +25,7 @@
 
 
 <h4><%= @city %> 7-Day Weather Forecast</h4>
-<table class="table-bordered table-responsive image_saturation" background="weather-images/weather_map.png">
+<table class="table-bordered table-responsive image_saturation" background="/images/weather-images/weather_map.png">
 
   <% 7.times do %>
       <th class="weather_forecast">
