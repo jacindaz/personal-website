@@ -8,6 +8,7 @@ require 'open-uri'
 
 require_relative 'weather.rb'
 require_relative 'npr.rb'
+require_relative 'api_calls.rb'
 
 
 #METHODS------------------------------------------------------------------------------------------
