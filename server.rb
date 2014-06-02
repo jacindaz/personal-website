@@ -136,16 +136,19 @@ get '/dashboard' do
   erb :dashboard
 end
 
+
+
 get '/test' do
 
   #NPR Stories API variables and calls---------------------------------------------------
   @npr_object = NPR.new
-  @npr_data = @npr_object.npr_api_xml("npr_key")
+  @npr_data = @npr_object.npr_api_xml("npr_key", "http://api.npr.org/query?id=1056,3&orgId=1&sort=featured&output=XML")
 
   @npr_data_array = []
-  @npr_nested_hash = {}
+
   @npr_data.xpath('//nprml/list/story').each do |story_info|
-    #binding.pry
+    @npr_nested_hash = {}
+
     url = story_info.xpath('link[@type="html"]').text
     @npr_nested_hash[:url] = url
 
@@ -156,10 +159,7 @@ get '/test' do
     @npr_nested_hash[:teaser] = teaser
 
     @npr_data_array << @npr_nested_hash
-
   end
-
-  #binding.pry
 
   erb :test
 end
