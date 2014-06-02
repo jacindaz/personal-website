@@ -6,26 +6,10 @@ require 'net/http'
 require 'nokogiri'
 require 'open-uri'
 
+
+#CLASSES and METHODS----------------------------------------------------------------------------
 require_relative 'weather.rb'
 require_relative 'npr.rb'
-require_relative 'api_calls.rb'
-
-
-#METHODS------------------------------------------------------------------------------------------
-
-
-def xml_loop(xml_file_path, xml_doc)
-  hash = {}
-  xml_doc.xpath(xml_file_path).each do |attributes|
-    #puts "outer loop: attributes #{attributes}"
-    attributes.each do |key, value|
-      #puts "each loop: key/value is #{key}, #{value}"
-      hash[key.to_sym] = value
-    end
-  end
-  hash
-end
-
 
 def xml_loop2(xml_file_path, xml_doc)
   hash = {}
@@ -106,6 +90,7 @@ get '/dashboard' do
   @weather_forecast_object = Weather.new
   @xml_doc = @weather_forecast_object.forecast_xml(@city, @state)
 
+
   @temp_array = []
   @xml_doc.xpath('/weatherdata/forecast/time/temperature').each do |element|
     @temp_hash2 = {}
@@ -117,14 +102,7 @@ get '/dashboard' do
 
 
   #Pulling in Image icon id's for weather pictures-----------------------------------------------------
-  @icon_array = []
-  @xml_doc.xpath('/weatherdata/forecast/time/symbol').each do |element|
-    @temp_hash2 = {}
-    element.each do |key,value|
-      @temp_hash2[key.to_sym] = value
-    end
-    @icon_array << @temp_hash2
-  end
+  @icon_array = @weather_forecast_object.xml_loop('/weatherdata/forecast/time/symbol', @xml_doc)
 
   @icon_url_array = []
   @icon_array.each do |day|
