@@ -1,5 +1,30 @@
 <p>Testing</p>
 
+
+<table class="table-bordered table-responsive">
+  <th class="header_width">
+      <h4><img class="logo_img_left" src="<%= @npr_logo %>" width="50px">
+        <%= @npr_title %>
+      </h4>
+  </th>
+
+<% @npr_data_array.each do |story| %>
+  <tr class="news_dashboard">
+    <% story.each do |key,value| %>
+      <% next if (key == :url) || (key == :teaser) %>
+      <% if key == :title %>
+        <td>
+          <a href="<%= story[:url] %>" target="_blank">
+            <%= value %>
+          </a>
+        </td>
+      <% end %>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+
+
 <h3><%= @npr_title %></h3>
 
 <table class="table table-hover">

@@ -10,6 +10,12 @@
   margin-right: 20px;
 }
 
+.logo_img_left {
+  float:left;
+  padding: 10px;
+  padding-top: 0px;
+}
+
 .image-right {
   float:right;
   margin-bottom: 20px;
@@ -19,6 +25,10 @@
 .dashboard {
   width: 75px;
   text-align: center;
+}
+
+.news_dashboard {
+  width: 300px;
 }
 
 .weather_forecast {

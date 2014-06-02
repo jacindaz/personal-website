@@ -1,5 +1,9 @@
 class NPR
 
+  def initialize(org_name)
+    @org_name = org_name
+  end
+
   def npr_api_xml(key_variable_name, url)
     key = ENV[key_variable_name]
     uri = URI("#{url}&apiKey=#{key}")
@@ -8,5 +12,8 @@ class NPR
     return xml_doc
   end
 
-
+  def logo_src
+    @logo_src = "/logos/NPR-logo.png"
+    return @logo_src
+  end
 end

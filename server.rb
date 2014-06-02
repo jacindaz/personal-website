@@ -141,8 +141,9 @@ end
 get '/test' do
 
   #NPR Stories API variables and calls---------------------------------------------------
-  @npr_object = NPR.new
+  @npr_object = NPR.new("NPR")
   @npr_data = @npr_object.npr_api_xml("npr_key", "http://api.npr.org/query?id=1056,3&orgId=1&output=XML&sort=featured")
+  @npr_logo = @npr_object.logo_src
 
   @npr_title = @npr_data.xpath('//nprml/list/title').text
 
