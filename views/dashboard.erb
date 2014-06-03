@@ -29,8 +29,9 @@
 
   <% 7.times do %>
       <th class="weather_forecast">
-        <span style="font-size: 18px;"><%= @date.strftime('%a') %></span>
-        <br>(<%= @date.strftime('%B %d') %>)
+        <span class="weather_header_text"><%= @date.strftime('%a') %></span>
+        <br>
+        <span class="weather_subheader_text">(<%= @date.strftime('%B %d') %>)</span>
 
       </th>
       <% @date += 1 %>
@@ -38,15 +39,15 @@
 
   <tr>
     <% @icon_url_array.each do |url| %>
-      <td><img src="<%= url %>"></td>
+      <td><center><img src="<%= url %>"></center></td>
     <% end %>
   </tr>
 
   <tr>
     <% @temp_array.each do |day_hash| %>
       <td class="weather_forecast temperature">
-        Max: <%= day_hash[:max] %>  &#176; F<br>
-        Min: <%= day_hash[:min] %>  &#176; F
+        <span class="weather_header_text"><%= day_hash[:max] %>  &#176; F</span><br>
+        <span class="weather_subheader_text"><%= day_hash[:min] %></span>
       </td>
     <% end %>
   </tr>

@@ -31,11 +31,6 @@
   width: 300px;
 }
 
-.weather_forecast {
-  width: 75px;
-  text-align:center;
-  padding:10px 10px;
-}
 
 .temperature {
   font-size: 16px;
@@ -53,10 +48,25 @@ td {
   padding: 5px 15px;
 }
 
+/*---------------------------Weather Class classes----------------------------*/
+
 .image_saturation {
   filter: saturate(70%);
   -webkit-filter: saturate(70%);
   -moz-filter: saturate(70%);
   -o-filter: saturate(70%);
   -ms-filter: saturate(70%);
+}
+
+.weather_forecast {
+  width: 100px;
+  text-align:center;
+  padding:10px 10px;
+}
+
+.weather_header_text {
+  font-size: 18px;
+}
+.weather_subheader_text {
+  font-size: 14px;
 }
