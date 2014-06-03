@@ -8,8 +8,8 @@ require 'open-uri'
 
 
 #CLASSES and METHODS----------------------------------------------------------------------------
-require_relative 'weather.rb'
-require_relative 'npr.rb'
+require_relative 'models/weather_class'
+require_relative 'models/npr_class'
 
 
 
