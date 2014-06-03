@@ -14,5 +14,4 @@ module ParseXML
     return array_of_hashes
   end
 
-
 end

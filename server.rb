@@ -11,6 +11,8 @@ require 'open-uri'
 require_relative 'weather.rb'
 require_relative 'npr.rb'
 
+
+
 def xml_(xml_file_path, xml_doc)
   hash = {}
   xml_doc.xpath(xml_file_path).each do |element|
@@ -89,7 +91,6 @@ get '/dashboard' do
   @date = today_date
   @weather_forecast_object = Weather.new
   @xml_doc = @weather_forecast_object.forecast_xml(@city, @state)
-
 
   @temp_array = []
   @xml_doc.xpath('/weatherdata/forecast/time/temperature').each do |element|

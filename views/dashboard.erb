@@ -44,7 +44,10 @@
 
   <tr>
     <% @temp_array.each do |day_hash| %>
-      <td class="weather_forecast temperature"><%= day_hash[:day] %>  &#176; F</td>
+      <td class="weather_forecast temperature">
+        Max: <%= day_hash[:max] %>  &#176; F<br>
+        Min: <%= day_hash[:min] %>  &#176; F
+      </td>
     <% end %>
   </tr>
 </table>

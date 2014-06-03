@@ -1,8 +1,9 @@
 require_relative 'xml_parse_module.rb'
 
+
 class Weather
 
-  extend ParseXML
+  include ParseXML
 
   #API Call Methods---------------------------------------------------------------------
 
