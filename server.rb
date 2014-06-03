@@ -76,16 +76,7 @@ get '/dashboard' do
 
   #Current Weather Variables-----------------------------------------------------------------------
   @weather_info = @current_weather_object.get_current_weather(@city, @state)
-  temperature = @current_weather_object.convert_F(@weather_info["main"]["temp"]).to_i
-  temp_min = @current_weather_object.convert_F(@weather_info["main"]["temp_min"]).to_i
-  temp_max = @current_weather_object.convert_F(@weather_info["main"]["temp_max"]).to_i
-  description = @weather_info["weather"][0]["description"]
-  weather_icon_id = @weather_info["weather"][0]["icon"]
-  weather_icon_url = @current_weather_object.weather_icon(weather_icon_id)
-
-  @current_weather_hash = { :current_weather => temperature, :high => temp_max, :low => temp_min,
-                            :description => description, :icon_id => weather_icon_id, :icon_url => weather_icon_url }
-
+  @current_weather_hash = @current_weather_object.current_weather_hash(@weather_info)
 
   #Weather Forecast Variables-----------------------------------------------------------------------
   @date = today_date

@@ -50,28 +50,21 @@ class Weather
 
   #Returning Data from XML---------------------------------------------------------------------------------
 
-  def current_weather_xml(city, state)
-    return get_current_weather(city, state)
+  def current_weather_hash(xml_data)
+    temperature = convert_F(xml_data["main"]["temp"]).to_i
+    temp_min = convert_F(xml_data["main"]["temp_min"]).to_i
+    temp_max = convert_F(xml_data["main"]["temp_max"]).to_i
+    description = xml_data["weather"][0]["description"]
+    weather_icon_id = xml_data["weather"][0]["icon"]
+    weather_icon_url = weather_icon(weather_icon_id)
+
+    current_weather_hash = { :current_weather => temperature, :high => temp_max, :low => temp_min,
+                            :description => description, :icon_id => weather_icon_id, :icon_url => weather_icon_url}
+    return current_weather_hash
   end
-
-
-
-# @current_weather_hash = { :current_weather => temperature, :high => temp_max, :low => temp_min,
-#                             :description => description, :icon_id => weather_icon_id, :icon_url => weather_icon_url }
-
-
 
 end
 
-
-  # @weather_info = current_weather_xml
-
-  # temperature = @current_weather_object.convert_F(@weather_info["main"]["temp"]).to_i
-  # temp_min = @current_weather_object.convert_F(@weather_info["main"]["temp_min"]).to_i
-  # temp_max = @current_weather_object.convert_F(@weather_info["main"]["temp_max"]).to_i
-  # description = @weather_info["weather"][0]["description"]
-  # weather_icon_id = @weather_info["weather"][0]["icon"]
-  # weather_icon_url = @current_weather_object.weather_icon(weather_icon_id)
 
 
 
