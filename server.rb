@@ -11,7 +11,7 @@ require 'open-uri'
 require_relative 'weather.rb'
 require_relative 'npr.rb'
 
-def xml_loop2(xml_file_path, xml_doc)
+def xml_(xml_file_path, xml_doc)
   hash = {}
   xml_doc.xpath(xml_file_path).each do |element|
     element.xpath.each do |attribute|
@@ -102,7 +102,7 @@ get '/dashboard' do
 
 
   #Pulling in Image icon id's for weather pictures-----------------------------------------------------
-  @icon_array = @weather_forecast_object.xml_loop('/weatherdata/forecast/time/symbol', @xml_doc)
+  @icon_array = @weather_forecast_object.xml_array_nested_hash('/weatherdata/forecast/time/symbol', @xml_doc)
 
   @icon_url_array = []
   @icon_array.each do |day|
@@ -110,7 +110,6 @@ get '/dashboard' do
     url = @weather_forecast_object.weather_icon(icon_id)
     @icon_url_array << url
   end
-
 
   erb :dashboard
 end

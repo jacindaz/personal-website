@@ -1,4 +1,8 @@
+require_relative 'xml_parse_module.rb'
+
 class Weather
+
+  extend ParseXML
 
   #API Call Methods---------------------------------------------------------------------
 
@@ -21,21 +25,6 @@ class Weather
     return url
   end
 
-  #Parsing XML Methods---------------------------------------------------------------------
-
-  def xml_loop(xml_file_path, xml_doc)
-    array_of_hashes = []
-    nested_hash = {}
-    xml_doc.xpath(xml_file_path).each do |elements|
-      #puts "outer loop: attributes #{attributes}"
-      elements.each do |key, value|
-        #puts "each loop: key/value is #{key}, #{value}"
-        nested_hash[key.to_sym] = value
-      end
-      array_of_hashes << nested_hash
-    end
-    return array_of_hashes
-  end
 
   #Kelvin, Celcius, Farenheit Conversion Methods----------------------------------------
 
