@@ -69,6 +69,17 @@ class Weather
     return current_weather_hash
   end
 
+  def icon_url_array(forecast_hash)
+    icon_url_array = []
+    forecast_hash.each do |day|
+      icon_id = day[:var]
+      url = weather_icon(icon_id)
+      icon_url_array << url
+    end
+    return icon_url_array
+  end
+
+
   #Parse XML Data---------------------------------------------------------------------------------
 
   def xml_array_nested_hash(xml_file_path, xml_doc)
@@ -76,9 +87,9 @@ class Weather
 
     xml_doc.xpath(xml_file_path).each do |elements|
       nested_hash = {}
-      puts "outer loop: attributes #{elements}"
+      #puts "outer loop: attributes #{elements}"
       elements.each do |key, value|
-        puts "each loop: key/value is #{key}, #{value}"
+        #puts "each loop: key/value is #{key}, #{value}"
         nested_hash[key.to_sym] = value
         #binding.pry
       end

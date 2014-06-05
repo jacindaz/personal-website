@@ -94,14 +94,10 @@ get '/dashboard' do
 
 
   #Pulling in Image icon id's for weather pictures-----------------------------------------------------
-  @icon_array = @weather_forecast_object.xml_array_nested_hash('/weatherdata/forecast/time/symbol', @xml_doc)
+  @forecast_icon_object = Weather.new
+  @icon_array = @forecast_icon_object.xml_array_nested_hash('/weatherdata/forecast/time/symbol', @xml_doc)
 
-  @icon_url_array = []
-  @icon_array.each do |day|
-    icon_id = day[:var]
-    url = @weather_forecast_object.weather_icon(icon_id)
-    @icon_url_array << url
-  end
+  @icon_url_array = @forecast_icon_object.icon_url_array(@icon_array)
 
   #binding.pry
 
