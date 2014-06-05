@@ -1,8 +1,8 @@
-require_relative 'xml_parse_module.rb'
+#require_relative 'xml_parse_module.rb'
 
 class Weather
 
-  include ParseXML
+  #include ParseXML
 
   def week_forecast
     # queries web service
@@ -67,6 +67,24 @@ class Weather
     current_weather_hash = { :current_weather => temperature, :high => temp_max, :low => temp_min,
                             :description => description, :icon_id => weather_icon_id, :icon_url => weather_icon_url}
     return current_weather_hash
+  end
+
+  #Parse XML Data---------------------------------------------------------------------------------
+
+  def xml_array_nested_hash(xml_file_path, xml_doc)
+    array_of_hashes = []
+
+    xml_doc.xpath(xml_file_path).each do |elements|
+      nested_hash = {}
+      puts "outer loop: attributes #{elements}"
+      elements.each do |key, value|
+        puts "each loop: key/value is #{key}, #{value}"
+        nested_hash[key.to_sym] = value
+        #binding.pry
+      end
+      array_of_hashes << nested_hash
+    end
+    return array_of_hashes
   end
 
 end

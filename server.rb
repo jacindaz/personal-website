@@ -103,6 +103,8 @@ get '/dashboard' do
     @icon_url_array << url
   end
 
+  #binding.pry
+
   erb :dashboard
 end
 
