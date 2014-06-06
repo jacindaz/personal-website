@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'rubygems'
+require 'sinatra/reloader'
 require 'pry'
 require 'json'
 require 'net/http'
@@ -96,7 +96,6 @@ get '/dashboard' do
   #Pulling in Image icon id's for weather pictures-----------------------------------------------------
   @forecast_icon_object = Weather.new
   @icon_array = @forecast_icon_object.xml_array_nested_hash('/weatherdata/forecast/time/symbol', @xml_doc)
-
   @icon_url_array = @forecast_icon_object.icon_url_array(@icon_array)
 
   #binding.pry
