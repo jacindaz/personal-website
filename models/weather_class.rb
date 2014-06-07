@@ -1,6 +1,13 @@
-#require_relative 'xml_parse_module.rb'
 
-class Weather
+class WeatherChannel
+
+
+
+end
+
+
+
+class OpenMapsWeather
 
   #include ParseXML
 

@@ -5,7 +5,7 @@ require 'json'
 require 'net/http'
 require 'nokogiri'
 require 'open-uri'
-
+require 'forecast_io'
 
 #CLASSES and METHODS----------------------------------------------------------------------------
 require_relative 'models/weather_class'
@@ -62,7 +62,7 @@ end
 
 get '/dashboard' do
   @title = "Jacinda's Dashboard"
-  @current_weather_object = Weather.new
+  @current_weather_object = OpenMapsWeather.new
 
   if params[:query] == nil
     @city = "Cambridge"
@@ -80,7 +80,7 @@ get '/dashboard' do
 
   #Weather Forecast Variables-----------------------------------------------------------------------
   @date = today_date
-  @weather_forecast_object = Weather.new
+  @weather_forecast_object = OpenMapsWeather.new
   @xml_doc = @weather_forecast_object.forecast_xml(@city, @state)
 
   @temp_array = []
@@ -94,7 +94,7 @@ get '/dashboard' do
 
 
   #Pulling in Image icon id's for weather pictures-----------------------------------------------------
-  @forecast_icon_object = Weather.new
+  @forecast_icon_object = OpenMapsWeather.new
   @icon_array = @forecast_icon_object.xml_array_nested_hash('/weatherdata/forecast/time/symbol', @xml_doc)
   @icon_url_array = @forecast_icon_object.icon_url_array(@icon_array)
 
