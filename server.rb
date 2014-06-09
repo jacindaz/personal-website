@@ -59,7 +59,7 @@ get '/blog' do
 end
 
 get '/dashboard' do
-  @title = "Jacinda's Dashboard"
+  @title = "Jacinda's Projects"
   @current_weather_object = OpenMapsWeather.new
 
   if params[:query] == nil
