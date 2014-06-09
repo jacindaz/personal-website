@@ -58,7 +58,7 @@ get '/blog' do
   erb :blog
 end
 
-get '/dashboard' do
+get '/projects' do
   @title = "Jacinda's Projects"
   @current_weather_object = OpenMapsWeather.new
 
@@ -98,7 +98,7 @@ get '/dashboard' do
 
   #binding.pry
 
-  erb :dashboard
+  erb :projects
 end
 
 
