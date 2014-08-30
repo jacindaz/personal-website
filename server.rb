@@ -5,15 +5,16 @@ require 'nokogiri'
 require 'open-uri'
 
 
-#CLASSES and METHODS----------------------------------------------------------------------------
+#CLASSES and METHODS and HELPERS------------------------------------------------------------------
 require_relative 'models/npr_class'
-
+require_relative 'helpers/asset_pipeline'
 
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
 
 get '/' do
   @title = "Jacinda Zhong"
+  puts "foo is set to " + settings.foo
   erb :index
 end
 
@@ -44,7 +45,6 @@ end
 
 get '/projects' do
   @title = "Jacinda's Projects"
-
   erb :projects
 end
 

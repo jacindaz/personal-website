@@ -6,3 +6,7 @@ ruby '2.1.1'
 gem 'sinatra'
 gem 'nokogiri'
 gem 'forecast_io'
+
+group :development, :test do
+  gem 'shotgun'
+end
