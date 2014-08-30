@@ -9,4 +9,5 @@ gem 'forecast_io'
 
 group :development, :test do
   gem 'shotgun'
+  gem 'pry'
 end
