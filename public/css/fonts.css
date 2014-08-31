@@ -1,0 +1,46 @@
+/************CUSTOM FONTS************/
+@font-face {
+    font-family: 'idolwildregular';
+    src: url('/fonts/idolwild/idolwild-webfont.eot');
+    src: url('/fonts/idolwild/idolwild-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/idolwild/idolwild-webfont.woff') format('woff'),
+         url('/fonts/idolwild/idolwild-webfont.ttf') format('truetype'),
+         url('/fonts/idolwild/idolwild-webfont.svg#idolwildregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'gooddogregular';
+    src: url('/fonts/good-dog/gooddog-webfont.eot');
+    src: url('/fonts/good-dog/gooddog-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/good-dog/gooddog-webfont.woff') format('woff'),
+         url('/fonts/good-dog/gooddog-webfont.ttf') format('truetype'),
+         url('/fonts/good-dog/gooddog-webfont.svg#gooddogregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'architects_daughterregular';
+    src: url('/fonts/architects-daughter/architectsdaughter-webfont.eot');
+    src: url('/fonts/architects-daughter/architectsdaughter-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/architects-daughter/architectsdaughter-webfont.woff') format('woff'),
+         url('/fonts/architects-daughter/architectsdaughter-webfont.ttf') format('truetype'),
+         url('/fonts/architects-daughter/architectsdaughter-webfont.svg#architects_daughterregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, ul.nav {
+  font-family: 'gooddogregular';
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.7rem; }
+h3 { font-size: 2.5rem; }
+h4 { font-size: 2.2rem; }
+h5 { font-size: 2rem; }
+
+li.nav-font { font-size: 3rem; }

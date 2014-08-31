@@ -3,12 +3,14 @@ require 'json'
 require 'net/http'
 require 'nokogiri'
 require 'open-uri'
+require 'pry'
 
 
-#CLASSES and METHODS----------------------------------------------------------------------------
+#CLASSES and METHODS and HELPERS------------------------------------------------------------------
 require_relative 'models/npr_class'
-
-
+require_relative 'helpers/asset_pipeline'
+set :base_styles, ["bootstrap.min.css", "styles.css", "fonts.css", "jacinda_added_bootstrap.css"]
+set :base_js, ["jquery-ui-1.10.4.min.js"]
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
 
@@ -44,7 +46,6 @@ end
 
 get '/projects' do
   @title = "Jacinda's Projects"
-
   erb :projects
 end
 
