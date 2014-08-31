@@ -1,6 +1,26 @@
-body {
+/*************************NAVBAR AND BODY STYLES****************************/
+
+body:before {
+    content: "";
+    position: fixed;
+    background: purple;
+    height: 10px;
+}
+body:before {
+    top: 0;
+}
+/*body:after {
+    bottom: 0;
+}*/
+nav.navbar {
+  border-top: thick solid purple;
+}
+
+section#page-inner-div {
   margin: 2% 10%;
 }
+
+/*************************OTHER****************************/
 
 .float-left { float:left; }
 .float-right { float:right; }
