@@ -35,7 +35,10 @@ get '/projects' do
   erb :projects
 end
 
-
+get '/designs' do
+  @title = "Design Inspiration"
+  erb :designs
+end
 
 get '/test' do
   @title = "Test Page"
