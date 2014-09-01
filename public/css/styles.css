@@ -20,6 +20,12 @@ section#page-inner-div {
   margin: 2% 10%;
 }
 
+/*************************LINKS****************************/
+a.nav-link:hover {
+  text-decoration: underline;
+  color: red;
+}
+
 /*************************OTHER****************************/
 
 .float-left { float:left; }

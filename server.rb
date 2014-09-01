@@ -9,7 +9,7 @@ require 'pry'
 #CLASSES and METHODS and HELPERS------------------------------------------------------------------
 require_relative 'models/npr_class'
 require_relative 'helpers/asset_pipeline'
-set :base_styles, ["bootstrap.min.css", "styles.css", "fonts.css", "jacinda_added_bootstrap.css"]
+set :base_styles, ["bootstrap.min.css", "jacinda_added_bootstrap.css", "fonts.css", "styles.css"]
 set :base_js, ["jquery-ui-1.10.4.min.js"]
 
 #ROUTES AND VIEWS----------------------------------------------------------------------------------
@@ -17,26 +17,13 @@ set :base_js, ["jquery-ui-1.10.4.min.js"]
 get '/' do
   @title = "Jacinda Zhong"
   erb :index
+
+  # redirect '/about'
 end
 
 get '/about' do
-  @title = "About Jacinda"
+  @title = "About"
   erb :about
-end
-
-get '/contact' do
-  @title = "Contact Me"
-  erb :contact
-end
-
-get '/funsies' do
-  @title = "Just for Funsies"
-  erb :funsies
-end
-
-get '/coding' do
-  @title = "Why Code"
-  erb :coding
 end
 
 get '/blog' do
@@ -45,7 +32,6 @@ get '/blog' do
 end
 
 get '/projects' do
-  @title = "Jacinda's Projects"
   erb :projects
 end
 
